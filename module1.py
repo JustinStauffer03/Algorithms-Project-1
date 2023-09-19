@@ -12,9 +12,7 @@ from random import randint
 import math
 import sys
 #variable declarations
-user = 0
-choice2 = 0
-choice3 = 0
+
 #function defintions
 def usertype():
     
@@ -41,7 +39,7 @@ def owner():
     print("\t5. Exit")
     ownerchoice = int(input("Enter your choice: "))
     return ownerchoice
-
+#section for first prompt
 usernumber = usertype()   #usernumber is equal to first choice from prompt
 if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
     publicnumber = publicuser()
@@ -52,4 +50,6 @@ elif usernumber == 3: #exits with code zero if option 3 is chosen
     sys.exit(0)
 else:
     print("Invalid entry")
+    #section for second prompt of public user/owner
+    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
 #we can then use the public number and owner number in the same way we used user number with if statemenst and make more functions
