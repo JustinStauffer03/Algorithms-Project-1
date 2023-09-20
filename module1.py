@@ -1,9 +1,9 @@
 #algorithms project 1
-#Justin Stauffer, Nate Bittle, Zac Benham
+#Justin Stauffer, Nate Bittle, Ellis Benham
 #encryption and decryption
 #notes for projects
-#len function can be used to find length of string, ex: count = len(string)
-#math.floor rounds down to nearest integer
+#len function can be used to find the length of a string, ex: count = len(string)
+#math.floor rounds down to the nearest integer
 #math.sqrt(number) does square root of number
 # keys = randint(1,100)
   #  print(keys)
@@ -13,7 +13,7 @@ import math
 import sys
 #variable declarations
 
-#function defintions
+#function definitions
 def usertype():
     
     print("RSA keys have been generated.")
@@ -32,7 +32,7 @@ def publicuser():
     return userchoice
 def owner():
     print("As the owner of the keys, what would you like to do?")
-    print("\t1. Decrypt a recieved message")
+    print("\t1. Decrypt a received message")
     print("\t2. Digitally sign a message")
     print("\t3. Show the keys")
     print("\t4. Generating a new set of keys")
@@ -40,7 +40,7 @@ def owner():
     ownerchoice = int(input("Enter your choice: "))
     return ownerchoice
 #section for first prompt
-usernumber = usertype()   #usernumber is equal to first choice from prompt
+usernumber = usertype()   #usernumber is equal to the first choice from the prompt
 if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
     publicnumber = publicuser()
 elif usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
@@ -51,5 +51,5 @@ elif usernumber == 3: #exits with code zero if option 3 is chosen
 else:
     print("Invalid entry")
     #section for second prompt of public user/owner
-    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
-#we can then use the public number and owner number in the same way we used user number with if statemenst and make more functions
+    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a received message function
+#we can then use the public number and owner number in the same way we used user number with if statements and make more functions
