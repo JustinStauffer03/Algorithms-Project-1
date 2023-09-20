@@ -51,5 +51,11 @@ elif usernumber == 3: #exits with code zero if option 3 is chosen
 else:
     print("Invalid entry")
     #section for second prompt of public user/owner
+def owneroptions():
+    #if publicnumber == 1 run that function
+    return 1
+
+def useroptions():
     #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
 #we can then use the public number and owner number in the same way we used user number with if statemenst and make more functions
+#we could keep using if functions to keep it organized and looking better but it would require more functions, we could just put everything inside of the owner and public user function and not have it jumping around to different functions, ex: if(ownernumber == 3 run show the keys function, or could just do it all inside the owner function)
