@@ -140,12 +140,14 @@ while usernumber != 3:
             ownernumber = owner()
             if ownernumber == 1:
                 print("The following messages are available: ")
-                finaltext = decrypt(privatekey, n, ciphertext)
-                finaltextstore.append(finaltext)
+                
+                
                 for i in range(0, numberoftexts):
-                   print( (i+1),  ". Length = ", length[i])
+                    finaltext = decrypt(privatekey, n, ciphertextstore[i])
+                    finaltextstore.append(finaltext)
+                    print( (i+1),  ". Length = ", length[i])
                 messagechoice = int(input("Enter your choice: "))
-                print("The decrypted message is : ",  finaltextstore[messagechoice])
+                print("The decrypted message is : ",  finaltextstore[messagechoice-1])
             if ownernumber == 2:
                  getsignature = input("Enter a message: ")
                  numberofsignatures+=1
