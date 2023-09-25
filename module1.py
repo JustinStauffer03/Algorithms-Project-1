@@ -29,6 +29,7 @@ ownernumber = 0
 publicnumber = 0
 #function definitions
 
+#Randomnumbers is a function that gets two random numbers to use in the calculation of p and q
 def randomnumbers(x):
    while x == False:
     x = True
@@ -41,36 +42,44 @@ def randomnumbers(x):
     if x == True:
         return e
 
-
-    
-
-
+#Stores a random number in p and q
 p = randomnumbers(x)
 q = randomnumbers(x)
+
+#Calculates phi and n
 phi = (p-1) * (q-1)
 n = p * q
+
+#Generates public key
 def generatepublic(phi):
     z = random.randint(2,phi)
     while math.gcd(z,phi) != 1:
         z = random.randint(2, phi)
     return z
+
+#Stores public key in variable
 publickey = generatepublic(phi)
 
 a = n
 b = phi
+
+#Defines extended_gcd function to use in generation of private key
 def extended_gcd(a, b):
     if b == 0:
         return (1,0,a)
     (x,y,d) = extended_gcd(b, a%b)
     return y, x-a//b*y, d
 
-
+#Generate private key
 def genprivatekey(publickey,phi):
     x = extended_gcd(publickey,phi)
     d = x[0] % phi
     return d
 
+#Store the private key in variable
 privatekey = genprivatekey(publickey,phi)
+
+#Encrypts the message using the public key
 def encrypt(n, publickey, plaintext):
     ciphertext = []
     for char in plaintext:
@@ -79,6 +88,8 @@ def encrypt(n, publickey, plaintext):
         ciphertext.append(num)
 
     return ciphertext
+
+#Decrypt the ciphertext using private key
 def decrypt(privatekey, n, ciphertext):
     plaintext = ''
     for number in ciphertext:
@@ -87,6 +98,8 @@ def decrypt(privatekey, n, ciphertext):
     return plaintext
 
     print("RSA keys have been generated.")
+
+    #Interface where user selcts their user type
 def usertype():
     
     print("Please select your user type: ")
@@ -95,6 +108,7 @@ def usertype():
     print("\t 3.Exit Program\n")
     number = int(input("Enter your choice: "))
     return number
+#Public user menu that is used to send message or validate a signature
 def publicuser():
     print("As a public user, what would you like to do?")
     print("\t1. Send an encrypted message")
@@ -102,6 +116,8 @@ def publicuser():
     print("\t3. Exit")
     userchoice = int(input("Enter your choice: "))
     return userchoice
+
+#Owner menu used to decrypt a message, sign a message, show keys, or generate new set of keys
 def owner():
     print("As the owner of the keys, what would you like to do?")
     print("\t1. Decrypt a received message")
@@ -113,6 +129,8 @@ def owner():
     return ownerchoice
 #section for first prompt
 usernumber = 0  #usernumber is equal to the first choice from the prompt
+
+#Here begins the loop to move back and forth between menus
 while usernumber != 3: 
     publicnumber = 0
     ownernumber = 0
