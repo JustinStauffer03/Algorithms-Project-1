@@ -22,6 +22,7 @@ length = []
 plaintext = []
 ciphertextstore = []
 finaltextstore = []
+signature = []
 numberoftexts = 0
 ownernumber = 0
 publicnumber = 0
@@ -122,6 +123,9 @@ while usernumber != 3:
                 ciphertext = encrypt(n, publickey, plaintext) 
                 ciphertextstore.append(ciphertext)
                 numberoftexts+=1
+            elif publicnumber == 2:
+                print("The following messages are available: ")
+
             elif publicnumber == 3:
                 usernumber = usertype()
     if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
@@ -135,14 +139,31 @@ while usernumber != 3:
                 for i in range(0, numberoftexts):
                    print( (i+1),  ".Length = ", length[i])
                    messagechoice = int(input("Enter your choice: "))
-       
                 print("The decrypted message is : ",  finaltextstore[messagechoice-1])
+            if ownernumber == 2:
+                 getsignature = input("Enter a message: ")
+                 signature.append(getsignature)
+                 print("Message Signed and Sent")
+            if ownernumber == 3:
+             print ("Public Key: " , n + "," , publickey , ")")
+             print ("Private Key: " , privatekey)
+            if ownernumber == 4:
+                 p = randomnumbers(x)
+                 q = randomnumbers(x)
+                 phi = (p-1) * (q-1)
+                 n = p * q
+                 publickey = generatepublic(phi)
+                 a = n
+                 b = phi
+                 privatekey = genprivatekey(publickey,phi)
+                 print ("New RSA Keys Have Been Generated")
             if ownernumber == 5:
                 usernumber = usertype()
     elif usernumber == 3: #exits with code zero if option 3 is chosen
         print("Bye for now!")
         sys.exit(0)
     
+
 
 
 
