@@ -141,7 +141,7 @@ while usernumber != 3:
             ownernumber = owner()
             if ownernumber == 1:
                 if numberoftexts == 0:
-                    print("There are no messages available")
+                    print("There are no messages available.")
                 else: 
                     print("The following messages are available: ")
                 
