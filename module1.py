@@ -1,13 +1,7 @@
 #algorithms project 1
 #Justin Stauffer, Nate Bittle, Ellis Benham
 #encryption and decryption
-#notes for projects
-#len function can be used to find the length of a string, ex: count = len(string)
-#math.floor rounds down to the nearest integer
-#math.sqrt(number) does square root of number
-# keys = randint(1,100)
-  #  print(keys)
-  #the above two lines are how to produce random int if needed
+
 from ast import Continue
 from random import randint
 import math
@@ -188,10 +182,4 @@ while usernumber != 3:
         
 
 
-    
-    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
-    #we can then use the public number and owner number in the same way we used user number with if statemenst and make more functions
-    #we could keep using if functions to keep it organized and looking better but it would require more functions, we could just put everything inside of the owner and public user function and not have it jumping around to different functions, ex: if(ownernumber == 3 run show the keys function, or could just do it all inside the owner function)
-    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a received message function
-    #we can then use the public number and owner number in the same way we used user number with if statements and make more functions
     
