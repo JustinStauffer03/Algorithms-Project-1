@@ -123,12 +123,15 @@ while usernumber != 3:
                 ciphertext = encrypt(n, publickey, plaintext) 
                 ciphertextstore.append(ciphertext)
             if publicnumber == 2:
-                print("The following messages are available: ")
-                for i in range(0, numberofsignatures):
-                     print( (i+1),  ".", signature[i])
-                messagechoicesig = int(input("Enter your choice: "))
-                #if signature[messagechoicesig -1]
-                print("The signature is valid")
+                if numberofsignatures == 0:
+                    print("There are no messages to diaplay.")
+                else:
+                    print("The following messages are available: ")
+                    for i in range(0, numberofsignatures):
+                         print( (i+1),  ".", signature[i])
+                    messagechoicesig = int(input("Enter your choice: "))
+                    #if signature[messagechoicesig -1]
+                    print("The signature is valid")
 
             elif publicnumber == 3:
                 continue
@@ -137,15 +140,18 @@ while usernumber != 3:
         while ownernumber!=5:
             ownernumber = owner()
             if ownernumber == 1:
-                print("The following messages are available: ")
+                if numberoftexts == 0:
+                    print("There are no messages available")
+                else: 
+                    print("The following messages are available: ")
                 
                 
-                for i in range(0, numberoftexts):
-                    finaltext = decrypt(privatekey, n, ciphertextstore[i])
-                    finaltextstore.append(finaltext)
-                    print( (i+1),  ". Length = ", length[i])
-                messagechoice = int(input("Enter your choice: "))
-                print("The decrypted message is : ",  finaltextstore[messagechoice-1])
+                    for i in range(0, numberoftexts):
+                        finaltext = decrypt(privatekey, n, ciphertextstore[i])
+                        finaltextstore.append(finaltext)
+                        print( (i+1),  ". Length = ", length[i])
+                    messagechoice = int(input("Enter your choice: "))
+                    print("The decrypted message is : ",  finaltextstore[messagechoice-1])
             if ownernumber == 2:
                  getsignature = input("Enter a message: ")
                  numberofsignatures+=1
