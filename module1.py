@@ -24,13 +24,12 @@ ciphertextstore = []
 finaltextstore = []
 signature = []
 numberoftexts = 0
+numberofsignatures = 0
 ownernumber = 0
 publicnumber = 0
 #function definitions
 
 def randomnumbers(x):
-    
-
    while x == False:
     x = True
     e=random.randint(3,10000)
@@ -42,6 +41,8 @@ def randomnumbers(x):
     if x == True:
         return e
 
+
+    
 
 
 p = randomnumbers(x)
@@ -119,12 +120,17 @@ while usernumber != 3:
         #public user options section
             if publicnumber == 1: 
                 plaintext = input("Enter the message to encrypt: ")
+                numberoftexts+=1
                 length.append(len(plaintext))
                 ciphertext = encrypt(n, publickey, plaintext) 
                 ciphertextstore.append(ciphertext)
-                numberoftexts+=1
             elif publicnumber == 2:
                 print("The following messages are available: ")
+                for i in range(0, numberofsignatures):
+                     print( (i+1),  ".", signature[i])
+                messagechoicesig = int(input("Enter your choice: "))
+                #if signature[messagechoicesig -1]
+                print("The signature is valid")
 
             elif publicnumber == 3:
                 usernumber = usertype()
@@ -136,12 +142,13 @@ while usernumber != 3:
                 print("The following messages are available: ")
                 finaltext = decrypt(privatekey, n, ciphertext)
                 finaltextstore.append(finaltext)
-                for i in range(0, numberoftexts):
-                   print( (i+1),  ".Length = ", length[i])
+                for i in range(0, numberoftexts+1):
+                   print( (i+1),  ". Length = ", length[i])
                    messagechoice = int(input("Enter your choice: "))
                 print("The decrypted message is : ",  finaltextstore[messagechoice-1])
             if ownernumber == 2:
                  getsignature = input("Enter a message: ")
+                 numberofsignatures+=1
                  signature.append(getsignature)
                  print("Message Signed and Sent")
             if ownernumber == 3:
