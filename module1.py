@@ -112,14 +112,13 @@ def owner():
     ownerchoice = int(input("Enter your choice: "))
     return ownerchoice
 #section for first prompt
-usernumber = 0
+usernumber = 0  #usernumber is equal to the first choice from the prompt
 while usernumber != 3: 
-   
-     #usernumber is equal to the first choice from the prompt
-      usernumber = 0 
-      publicnumber = 0
-      usernumber = usertype()
-      if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
+    publicnumber = 0
+    ownernumber = 0
+    usernumber = usertype()   
+
+    if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
         while publicnumber != 3:
             publicnumber = publicuser()
         #public user options section
@@ -137,10 +136,9 @@ while usernumber != 3:
                 #if signature[messagechoicesig -1]
                 print("The signature is valid")
 
-            if publicnumber == 3:
+            elif publicnumber == 3:
                 continue
-                
-      if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
+    if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
     #owner options sections
         while ownernumber!=5:
             ownernumber = owner()
@@ -173,9 +171,8 @@ while usernumber != 3:
                  privatekey = genprivatekey(publickey,phi)
                  print ("New RSA Keys Have Been Generated")
             if ownernumber == 5:
-             continue
-                
-      if usernumber == 3: #exits with code zero if option 3 is chosen
+                continue
+    elif usernumber == 3: #exits with code zero if option 3 is chosen
         print("Bye for now!")
         sys.exit(0)
     
