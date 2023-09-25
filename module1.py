@@ -1,13 +1,7 @@
 #algorithms project 1
 #Justin Stauffer, Nate Bittle, Ellis Benham
 #encryption and decryption
-#notes for projects
-#len function can be used to find the length of a string, ex: count = len(string)
-#math.floor rounds down to the nearest integer
-#math.sqrt(number) does square root of number
-# keys = randint(1,100)
-  #  print(keys)
-  #the above two lines are how to produce random int if needed
+
 from ast import Continue
 from random import randint
 import math
@@ -146,13 +140,16 @@ while usernumber != 3:
                 length.append(len(plaintext))
                 ciphertext = encrypt(n, publickey, plaintext) 
                 ciphertextstore.append(ciphertext)
-            elif publicnumber == 2:
-                print("The following messages are available: ")
-                for i in range(0, numberofsignatures):
-                     print( (i+1),  ".", signature[i])
-                messagechoicesig = int(input("Enter your choice: "))
-                #if signature[messagechoicesig -1]
-                print("The signature is valid")
+            if publicnumber == 2:
+                if numberofsignatures == 0:
+                    print("There are no messages to diaplay.")
+                else:
+                    print("The following messages are available: ")
+                    for i in range(0, numberofsignatures):
+                         print( (i+1),  ".", signature[i])
+                    messagechoicesig = int(input("Enter your choice: "))
+                    #if signature[messagechoicesig -1]
+                    print("The signature is valid")
 
             elif publicnumber == 3:
                 continue
@@ -161,15 +158,18 @@ while usernumber != 3:
         while ownernumber!=5:
             ownernumber = owner()
             if ownernumber == 1:
-                print("The following messages are available: ")
+                if numberoftexts == 0:
+                    print("There are no messages available.")
+                else: 
+                    print("The following messages are available: ")
                 
                 
-                for i in range(0, numberoftexts):
-                    finaltext = decrypt(privatekey, n, ciphertextstore[i])
-                    finaltextstore.append(finaltext)
-                    print( (i+1),  ". Length = ", length[i])
-                messagechoice = int(input("Enter your choice: "))
-                print("The decrypted message is : ",  finaltextstore[messagechoice-1])
+                    for i in range(0, numberoftexts):
+                        finaltext = decrypt(privatekey, n, ciphertextstore[i])
+                        finaltextstore.append(finaltext)
+                        print( (i+1),  ". Length = ", length[i])
+                    messagechoice = int(input("Enter your choice: "))
+                    print("The decrypted message is : ",  finaltextstore[messagechoice-1])
             if ownernumber == 2:
                  getsignature = input("Enter a message: ")
                  numberofsignatures+=1
@@ -199,16 +199,11 @@ while usernumber != 3:
 
 
 
+
     
 
 
         
 
 
-    
-    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
-    #we can then use the public number and owner number in the same way we used user number with if statemenst and make more functions
-    #we could keep using if functions to keep it organized and looking better but it would require more functions, we could just put everything inside of the owner and public user function and not have it jumping around to different functions, ex: if(ownernumber == 3 run show the keys function, or could just do it all inside the owner function)
-    #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a received message function
-    #we can then use the public number and owner number in the same way we used user number with if statements and make more functions
     
