@@ -142,9 +142,7 @@ while usernumber != 3:
     elif usernumber == 3: #exits with code zero if option 3 is chosen
         print("Bye for now!")
         sys.exit(0)
-    else:
-        print("Invalid entry")
-        #section for second prompt of public user/owner
+    
 
 
 
