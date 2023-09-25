@@ -10,10 +10,72 @@
   #the above two lines are how to produce random int if needed
 from random import randint
 import math
+from cmath import e
+import random 
+import math
 import sys
 #variable declarations
+x = False
 
 #function definitions
+
+def randomnumbers(x):
+    
+
+   while x == False:
+    x = True
+    e=random.randint(3,10000)
+    if e < 2:
+        x = False
+    for i in range (2, int(e**0.5) + 1):
+        if e % i == 0:
+            x = False
+    if x == True:
+        return e
+
+
+
+p = randomnumbers(x)
+q = randomnumbers(x)
+phi = (p-1) * (q-1)
+n = p * q
+def generatepublic(phi):
+    z = random.randint(2,phi)
+    while math.gcd(z,phi) != 1:
+        z = random.randint(2, phi)
+    return z
+publickey = generatepublic(phi)
+
+a = n
+b = phi
+def extended_gcd(a, b):
+    if b == 0:
+        return (1,0,a)
+    (x,y,d) = extended_gcd(b, a%b)
+    return y, x-a//b*y, d
+
+
+def genprivatekey(publickey,phi):
+    x = extended_gcd(publickey,phi)
+    d = x[0] % phi
+    return d
+
+privatekey = genprivatekey(publickey,phi)
+def encrypt(n, publickey, plaintext):
+    ciphertext = []
+    for char in plaintext:
+        holder = ord(char)
+        num = pow(holder, publickey, n)
+        ciphertext.append(num)
+
+    return ciphertext
+def decrypt(privatekey, n, ciphertext):
+    plaintext = ''
+    for number in ciphertext:
+        holder = pow(number,privatekey,n)
+        plaintext += chr(holder)
+    return plaintext
+
 def usertype():
     
     print("RSA keys have been generated.")
@@ -53,14 +115,21 @@ else:
     print("Invalid entry")
     #section for second prompt of public user/owner
 
+def useroptions():
+    if publicnumber == 1: 
+        plaintext = input("Enter the message to encrypt: ")
+        ciphertext = encrypt(n, publickey, plaintext) 
 def owneroptions():
-    #if publicnumber == 1 run that function
+    if ownernumber == 1:
+        print("The following messages are available: ")
+
+        finaltext = decrypt(privatekey, n, ciphertext)
     return 1
 
-def useroptions():
-    return 1
+    
     #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
     #we can then use the public number and owner number in the same way we used user number with if statemenst and make more functions
     #we could keep using if functions to keep it organized and looking better but it would require more functions, we could just put everything inside of the owner and public user function and not have it jumping around to different functions, ex: if(ownernumber == 3 run show the keys function, or could just do it all inside the owner function)
     #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a received message function
     #we can then use the public number and owner number in the same way we used user number with if statements and make more functions
+    
