@@ -8,15 +8,23 @@
 # keys = randint(1,100)
   #  print(keys)
   #the above two lines are how to produce random int if needed
+from ast import Continue
 from random import randint
 import math
 from cmath import e
 import random 
 import math
 import sys
+from turtle import goto
 #variable declarations
 x = False
-
+length = []
+plaintext = []
+ciphertextstore = []
+finaltextstore = []
+numberoftexts = 0
+ownernumber = 0
+publicnumber = 0
 #function definitions
 
 def randomnumbers(x):
@@ -76,9 +84,9 @@ def decrypt(privatekey, n, ciphertext):
         plaintext += chr(holder)
     return plaintext
 
+    print("RSA keys have been generated.")
 def usertype():
     
-    print("RSA keys have been generated.")
     print("Please select your user type: ")
     print("\t 1. A public user")
     print("\t 2.The owner of the keys")
@@ -102,29 +110,50 @@ def owner():
     ownerchoice = int(input("Enter your choice: "))
     return ownerchoice
 #section for first prompt
-
 usernumber = usertype()   #usernumber is equal to the first choice from the prompt
-if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
-    publicnumber = publicuser()
-elif usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
-    ownernumber = owner()
-elif usernumber == 3: #exits with code zero if option 3 is chosen
-    print("Bye for now!")
-    sys.exit(0)
-else:
-    print("Invalid entry")
-    #section for second prompt of public user/owner
+while usernumber != 3: 
+    if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
+        while publicnumber != 3:
+            publicnumber = publicuser()
+        #public user options section
+            if publicnumber == 1: 
+                plaintext = input("Enter the message to encrypt: ")
+                length.append(len(plaintext))
+                ciphertext = encrypt(n, publickey, plaintext) 
+                ciphertextstore.append(ciphertext)
+                numberoftexts+=1
+            elif publicnumber == 3:
+                usernumber = usertype()
+    if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
+    #owner options sections
+        while ownernumber!=5:
+            ownernumber = owner()
+            if ownernumber == 1:
+                print("The following messages are available: ")
+                finaltext = decrypt(privatekey, n, ciphertext)
+                finaltextstore.append(finaltext)
+                for i in range(0, numberoftexts):
+                   print( (i+1),  ".Length = ", length[i])
+                   messagechoice = int(input("Enter your choice: "))
+       
+                print("The decrypted message is : ",  finaltextstore[messagechoice-1])
+            if ownernumber == 5:
+                usernumber = usertype()
+    elif usernumber == 3: #exits with code zero if option 3 is chosen
+        print("Bye for now!")
+        sys.exit(0)
+    else:
+        print("Invalid entry")
+        #section for second prompt of public user/owner
 
-def useroptions():
-    if publicnumber == 1: 
-        plaintext = input("Enter the message to encrypt: ")
-        ciphertext = encrypt(n, publickey, plaintext) 
-def owneroptions():
-    if ownernumber == 1:
-        print("The following messages are available: ")
 
-        finaltext = decrypt(privatekey, n, ciphertext)
-    return 1
+
+
+    
+
+
+        
+
 
     
     #ex: if public number == 1, run function that sends an encrypted message or if owner number == 1, run decrypt a recieved message function
