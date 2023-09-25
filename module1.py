@@ -112,9 +112,14 @@ def owner():
     ownerchoice = int(input("Enter your choice: "))
     return ownerchoice
 #section for first prompt
-usernumber = usertype()   #usernumber is equal to the first choice from the prompt
+usernumber = 0
 while usernumber != 3: 
-    if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
+   
+     #usernumber is equal to the first choice from the prompt
+      usernumber = 0 
+      publicnumber = 0
+      usernumber = usertype()
+      if usernumber == 1:   #if choice is equal to 1, set publicnumber to the choice of the public user prompt
         while publicnumber != 3:
             publicnumber = publicuser()
         #public user options section
@@ -124,7 +129,7 @@ while usernumber != 3:
                 length.append(len(plaintext))
                 ciphertext = encrypt(n, publickey, plaintext) 
                 ciphertextstore.append(ciphertext)
-            elif publicnumber == 2:
+            if publicnumber == 2:
                 print("The following messages are available: ")
                 for i in range(0, numberofsignatures):
                      print( (i+1),  ".", signature[i])
@@ -132,9 +137,10 @@ while usernumber != 3:
                 #if signature[messagechoicesig -1]
                 print("The signature is valid")
 
-            elif publicnumber == 3:
-                usernumber = usertype()
-    if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
+            if publicnumber == 3:
+                continue
+                
+      if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
     #owner options sections
         while ownernumber!=5:
             ownernumber = owner()
@@ -154,7 +160,7 @@ while usernumber != 3:
                  signature.append(getsignature)
                  print("Message Signed and Sent")
             if ownernumber == 3:
-             print ("Public Key: " , n + "," , publickey , ")")
+             print ("Public Key: " , n , "," , publickey , ")")
              print ("Private Key: " , privatekey)
             if ownernumber == 4:
                  p = randomnumbers(x)
@@ -167,11 +173,13 @@ while usernumber != 3:
                  privatekey = genprivatekey(publickey,phi)
                  print ("New RSA Keys Have Been Generated")
             if ownernumber == 5:
-                usernumber = usertype()
-    elif usernumber == 3: #exits with code zero if option 3 is chosen
+             continue
+                
+      if usernumber == 3: #exits with code zero if option 3 is chosen
         print("Bye for now!")
         sys.exit(0)
     
+
 
 
 
