@@ -142,7 +142,7 @@ while usernumber != 3:
                 print("The following messages are available: ")
                 finaltext = decrypt(privatekey, n, ciphertext)
                 finaltextstore.append(finaltext)
-                for i in range(0, numberoftexts+1):
+                for i in range(0, numberoftexts):
                    print( (i+1),  ". Length = ", length[i])
                    messagechoice = int(input("Enter your choice: "))
                 print("The decrypted message is : ",  finaltextstore[messagechoice-1])
