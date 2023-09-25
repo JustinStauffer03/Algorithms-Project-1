@@ -144,8 +144,8 @@ while usernumber != 3:
                 finaltextstore.append(finaltext)
                 for i in range(0, numberoftexts):
                    print( (i+1),  ". Length = ", length[i])
-                   messagechoice = int(input("Enter your choice: "))
-                print("The decrypted message is : ",  finaltextstore[messagechoice-1])
+                messagechoice = int(input("Enter your choice: "))
+                print("The decrypted message is : ",  finaltextstore[messagechoice])
             if ownernumber == 2:
                  getsignature = input("Enter a message: ")
                  numberofsignatures+=1
