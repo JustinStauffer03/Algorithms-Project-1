@@ -142,7 +142,7 @@ while usernumber != 3:
                 ciphertextstore.append(ciphertext)
             if publicnumber == 2:
                 if numberofsignatures == 0:
-                    print("There are no messages to diaplay.")
+                    print("There are no messages available.")
                 else:
                     print("The following messages are available: ")
                     for i in range(0, numberofsignatures):
