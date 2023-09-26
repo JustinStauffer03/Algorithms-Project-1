@@ -148,9 +148,10 @@ while usernumber != 3:
                     for i in range(0, numberofsignatures):
                          print( (i+1),  ".", signature[i])
                     messagechoicesig = int(input("Enter your choice: "))
-                    #if signature[messagechoicesig -1]
-                    print("The signature is valid")
-
+                    if messagechoicesig > numberofsignatures or messagechoicesig <= 0:
+                        print("The signature is invalid.")
+                    else:
+                        print("The signature is valid.")
             elif publicnumber == 3:
                 continue
     if usernumber == 2: #set  ownernumber eqaul to owner function if usernumber is equal to 2 
