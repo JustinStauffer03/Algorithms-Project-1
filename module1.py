@@ -23,7 +23,7 @@ ownernumber = 0
 publicnumber = 0
 #function definitions
 
-#Randomnumbers is a function that gets two random numbers to use in the calculation of p and q
+#Randomnumbers is a function that gets two random prime numbers to use in the calculation of p and q
 def randomnumbers(x):
    while x == False:
     x = True
@@ -44,7 +44,7 @@ q = randomnumbers(x)
 phi = (p-1) * (q-1)
 n = p * q
 
-#Generates public key
+#Generates public key Algorithm found in lecture slides
 def generatepublic(phi):
     z = random.randint(2,phi)
     while math.gcd(z,phi) != 1:
@@ -57,14 +57,14 @@ publickey = generatepublic(phi)
 a = n
 b = phi
 
-#Defines extended_gcd function to use in generation of private key
+#Defines extended_gcd function to use in generation of private key, algorithm found in lecture slides
 def extended_gcd(a, b):
     if b == 0:
         return (1,0,a)
     (x,y,d) = extended_gcd(b, a%b)
     return y, x-a//b*y, d
 
-#Generate private key
+#Generate private key, algorithm found in lecture slides
 def genprivatekey(publickey,phi):
     x = extended_gcd(publickey,phi)
     d = x[0] % phi
